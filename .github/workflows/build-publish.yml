@@ -4,7 +4,7 @@ on:
     branches: [ main ]
 
 jobs:
-  publish-soup-image:
+  publish-ping-image:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Extract branch name
       shell: bash
