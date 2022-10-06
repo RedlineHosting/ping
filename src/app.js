@@ -1,11 +1,11 @@
-import express from 'express';
+import express from 'express'
 
-const app = express();
+const app = express()
 
 app.get('/ping', (req, res) => {
   console.log(`[PING] HTTP GET request from ${req.ip} (${req.hostname})`)
 
-  res.send('Pong');
+  res.send('Pong')
 })
 
 app.listen(9091, () => {
