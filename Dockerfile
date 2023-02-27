@@ -7,4 +7,4 @@ EXPOSE 9091
 
 RUN npm install
 
-CMD [ "npm", "start"]
+CMD ["npm", "start"]
