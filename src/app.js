@@ -1,19 +1,16 @@
-import express from 'express'
-import cors from 'cors'
+import { WebSocketServer } from 'ws'
 
-const app = express()
+const port = process.env.PORT || 9091
 
-app.use(cors({
-  origin: '*', // allow access from all origins
-  methods: ['GET']
-}))
+const wss = new WebSocketServer({ port })
 
-app.get('/ping', (req, res) => {
-  console.log(`[PING] HTTP GET request from ${req.ip} (${req.hostname})`)
+wss.on('connection', (ws, req) => {
+  ws.on('message', () => {
+    ws.send('Pong')
+    ws.close()
 
-  res.send('Pong')
+    console.log(`[PING] WS ping from ${req.socket.remoteAddress}`)
+  })
 })
 
-app.listen(9091, () => {
-  console.log(`[PING] Listening on ::9091`)
-})
+console.log(`[PING] Listening on ::${port}`)
