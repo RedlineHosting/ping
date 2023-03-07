@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A simple micro-service to ping nodes over WebSocket",
   "main": "src/app.js",
-  "type": "module",
   "scripts": {
     "start": "node src/app.js"
   },
@@ -18,7 +17,6 @@
   },
   "homepage": "https://github.com/Redline-Hosting/ping#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "ws": "^8.12.1"
+    "socket.io": "^4.6.1"
   }
 }
