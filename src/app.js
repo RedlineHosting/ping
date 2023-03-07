@@ -1,4 +1,11 @@
-const app = require('http').createServer()
+const { readFileSync } = require("fs")
+const path = require('path')
+
+const app = require('https').createServer({
+  key: readFileSync(path.join('certs', 'key.pem')),
+  cert: readFileSync(path.join('certs', 'cert.pem')),
+})
+
 const io = require('socket.io')(app, {
   cors: {
     origin: '*',
@@ -9,7 +16,7 @@ const io = require('socket.io')(app, {
 const port = process.env.PORT || 9091
 
 io.on('connection', (socket) => {
-  socket.on('ping', (clientTimestamp) => {
+  socket.on('ping', clientTimestamp => {
     socket.emit('pong', clientTimestamp)
     console.log(`[PING] WS ping from ${socket.handshake.address}`)
   })
