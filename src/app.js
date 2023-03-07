@@ -9,8 +9,8 @@ const io = require('socket.io')(app, {
 const port = process.env.PORT || 9091
 
 io.on('connection', (socket) => {
-  socket.on('ping', () => {
-    socket.emit('pong')
+  socket.on('ping', (clientTimestamp) => {
+    socket.emit('pong', clientTimestamp)
     console.log(`[PING] WS ping from ${socket.handshake.address}`)
   })
 })
